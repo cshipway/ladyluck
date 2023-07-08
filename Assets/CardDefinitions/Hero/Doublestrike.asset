@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20fad8a755859a54c9f3a8a79763df9c, type: 3}
+  m_Name: Doublestrike
+  m_EditorClassIdentifier: 
+  portrait: {fileID: 0}
+  manaCost: 2
+  cardEffects:
+  - name: Deal 2 damage.
+    damage: 2
+    healing: 0
+    searchCard: {fileID: 0}
+    shuffle: 0
+    statusEffects: []
+  - name: Deal 2 damage.
+    damage: 2
+    healing: 0
+    searchCard: {fileID: 0}
+    shuffle: 0
+    statusEffects: []
+  conditionalEffects: []
+  appendDescription: 
+  color: {r: 0.24313726, g: 0.23137255, b: 0.27450982, a: 1}
