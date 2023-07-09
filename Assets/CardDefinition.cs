@@ -35,7 +35,7 @@ public class CardDefinition : ScriptableObject
         }
     }
 
-    public string GetDescription()
+    public string GetDescription(Champion champion)
     {
         string description = "";
         int count = 0;
@@ -44,7 +44,7 @@ public class CardDefinition : ScriptableObject
         {
             if (count > 0)
                 description += "\n";
-            description += $"{cardEffect}";
+            description += $"{cardEffect.GetDescription(champion)}";
             count++;
         }
 
@@ -61,7 +61,23 @@ public class CardDefinition : ScriptableObject
             if (count > 0)
                 description += "\n";
             description += $"{appendDescription}";
+            count++;
         }
+
+        if(description.Contains("strength"))
+        {
+            if (count > 0)
+                description += "\n";
+            description += $"<i>Strength: Your strikes deal +1 damage.</i>";
+            count++;
+        }
+        if(description.Contains("armor"))
+        {
+            if (count > 0)
+                description += "\n";
+            description += $"<i>Armor: You take -1 damage.</i>";
+        }
+
         return description;
 
         

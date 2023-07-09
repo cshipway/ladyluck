@@ -8,10 +8,12 @@ public class PhysicalChampionHand : MonoBehaviour
 {
     [SerializeField] private Card cardPrefab;
 
-    public void PutCardInHand(CardDefinition card)
+    public void PutCardInHand(Champion champion, CardDefinition card)
     {
-        LayoutElement le = Instantiate(cardPrefab, transform).Bootup(card, false).AddComponent<LayoutElement>();
+        LayoutElement le = Instantiate(cardPrefab, transform).Bootup(card, false, champion).AddComponent<LayoutElement>();
         le.flexibleWidth = 1;
+        foreach (Image image in le.GetComponentsInChildren<Image>())
+            image.raycastTarget = false;
     }
 
     public void RemoveCardFromHand(CardDefinition cardDefinition)

@@ -10,9 +10,9 @@ public class ConditionalEffect
     public Condition condition;
     public CardEffect effect;
 
-    public override string ToString()
+    public string GetDescription(Champion champion)
     {
-        string toRet = $"{condition}{effect}";
+        string toRet = $"{condition}{effect.GetDescription(champion)}";
 
         return toRet;
     }

@@ -8,6 +8,9 @@ using UnityEngine.XR;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private DeckBuilder heroDeckBuilder;
-    [SerializeField] private DeckBuilder enemyDeckBuilder;
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+            Application.Quit();
+    }
 }

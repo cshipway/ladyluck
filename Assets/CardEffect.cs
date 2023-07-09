@@ -11,14 +11,14 @@ public class CardEffect
     public bool shuffle;
     public List<StatusEffectDefinition> statusEffects;
 
-    public override string ToString()
+    public string GetDescription(Champion champion)
     {
         string description = "";
         int count = 0;
 
         if (damage > 0)
         {
-            description += AddDamageToDescription(damage, count);
+            description += AddDamageToDescription(champion, damage, count);
             count++;
         }
 
@@ -50,12 +50,20 @@ public class CardEffect
         return description;
     }
 
-    private string AddDamageToDescription(int damage, int count)
+    private string AddDamageToDescription(Champion champion, int damage, int count)
     {
         string toRet = "";
         if (count > 0)
             toRet += "\n";
-        toRet += $"Deal {damage} damage.";
+
+        bool isDamageAdjusted = false;
+
+        int d = damage;
+        isDamageAdjusted = (champion != null && champion.foe != null) && (champion.Strength > 0 || champion.foe.Armor > 0);
+        if (isDamageAdjusted)
+            d = damage + champion.Strength - champion.foe.Armor;
+
+        toRet += $"Deal {(isDamageAdjusted ? $"*{d}*" : d)} damage.";
         return toRet;
     }
 

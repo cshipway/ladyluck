@@ -6,6 +6,7 @@
 /[Tt]emp/
 /[Oo]bj/
 /[Bb]uilds/
+/Build/
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
 
@@ -60,7 +61,7 @@ sysinfo.txt
 *.unitypackage
 
 #Zipped builds of the game
-WildYonder*.zip
+*.zip
 
 # Crashlytics generated file
 crashlytics-build.properties

@@ -6,23 +6,18 @@ public class DeckBuilder : MonoBehaviour
     [SerializeField] private DeckDefinition startingDeck;
     [SerializeField] private Card cardPrefab;
 
-    [ContextMenu("Reset to Deck Definition")]
-    private void ResetToDeckDefinition()
-    {
-        foreach (Card card in GetComponentsInChildren<Card>())
-            DestroyImmediate(card.gameObject);
-
-        foreach (CardDefinition cardDefinition in startingDeck.deck.cards)
-            Instantiate(cardPrefab, transform).Bootup(cardDefinition, true);
-    }
-
-    public void Populate(Deck deck)
+    public void Populate(Champion champion, Deck deck)
     {
         foreach (Card card in GetComponentsInChildren<Card>())
             DestroyImmediate(card.gameObject);
 
         foreach (CardDefinition cardDefinition in deck.cards)
-            Instantiate(cardPrefab, transform).Bootup(cardDefinition, true);
+        {
+            Card c = Instantiate(cardPrefab, transform).Bootup(cardDefinition, true, champion);
+            foreach (MeshRenderer rend in c.GetComponentsInChildren<MeshRenderer>())
+                rend.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+        }
+
     }
 
     public Deck GetDeck()

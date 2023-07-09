@@ -133,7 +133,7 @@ public class Champion
         mp -= card.manaCost;
         Debug.Log($"{name} plays {card.name}!");
         battlefield.RemoveCardFromHand(this, card);
-        battlefield.ShowCard(card);
+        battlefield.ShowCard(card, this);
         yield return battlefield.StartCoroutine(battlefield.ShowReasonableText($"{name} plays {card.name}!"));
         battlefield.StopShowingCard();
 

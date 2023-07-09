@@ -1,3 +1,5 @@
+using JetBrains.Annotations;
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEditor;
@@ -7,6 +9,7 @@ using UnityEngine.UI;
 
 public class Card : MonoBehaviour
 {
+    private Champion champion;
     public CardDefinition cardDefinition;
     public bool isDraggable;
 
@@ -39,19 +42,22 @@ public class Card : MonoBehaviour
 
     private static int siblingIndexToSet = -1;
 
-    public Card Bootup(CardDefinition cardDefinition, bool isDraggable)
+    public static event Action OnDeckChanged;
+
+    public Card Bootup(CardDefinition cardDefinition, bool isDraggable, Champion champion)
     {
         this.cardDefinition = cardDefinition;
         this.isDraggable = isDraggable;
+        this.champion = champion;
         Render();
-
-
 
         return this;
     }
 
     private void Update()
     {
+        RenderDescriptionOnly();
+
         if(IsMousedOver && Input.GetMouseButtonDown(0))
         {
             dragCard = this;
@@ -72,6 +78,8 @@ public class Card : MonoBehaviour
 
                 dragCard.CardTurnAnimation(rising ? -90f : 90f);
                 CardTurnAnimation(rising ? -5f : 5f);
+
+                OnDeckChanged?.Invoke();
             }
             
             dragCard = null;
@@ -124,15 +132,19 @@ public class Card : MonoBehaviour
             cardManacostText.text = cardDefinition.manaCost.ToString();
             cardPortraitImage.sprite = cardDefinition.portrait;
             
-            cardDescriptionText.text = cardDefinition.GetDescription();
+            cardDescriptionText.text = cardDefinition.GetDescription(champion);
         }
+    }
+
+    private void RenderDescriptionOnly()
+    {
+        cardDescriptionText.text = cardDefinition.GetDescription(champion);
     }
 
     private void OnValidate()
     {
         Render();
     }
-
 
 
     private void CardTurnAnimation(float amount)

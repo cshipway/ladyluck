@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -5,6 +6,8 @@ using UnityEngine;
 
 public class BattlefieldManager : MonoBehaviour
 {
+    public static BattlefieldManager Instance { get; private set; }
+
     [SerializeField] private TextMeshProUGUI bigText;
     [SerializeField] private TextMeshProUGUI reasonableText;
     [SerializeField] private PhysicalChampionHand heroHand;
@@ -21,16 +24,26 @@ public class BattlefieldManager : MonoBehaviour
 
     private bool isAutobattling;
 
-    [SerializeField] private Champion hero;
-    [SerializeField] private Champion enemy;
+    [SerializeField] public Champion hero;
+    [SerializeField] public Champion enemy;
 
     [SerializeField] private DeckDefinition heroStartingDeck;
     [SerializeField] private DeckDefinition enemyStartingDeck;
 
+    public static event Action OnMatchStart;
+
     private void Awake()
+    {
+        Instance = this;
+    }
+
+    private void Start()
     {
         hero = new Champion("Hero", 10, new Deck() { cards = new List<CardDefinition>(heroStartingDeck.deck.cards) });
         enemy = new Champion("Enemy", 10, new Deck() { cards = new List<CardDefinition>(enemyStartingDeck.deck.cards) });
+
+        DeckBuilderManager.Instance.SetHeroDeck(hero, hero.deck);
+        DeckBuilderManager.Instance.SetEnemyDeck(enemy, enemy.deck);
 
         StartBattle();
     }
@@ -54,6 +67,7 @@ public class BattlefieldManager : MonoBehaviour
     private IEnumerator Autobattle()
     {
         yield return StartCoroutine(ShowBigText("Match Start!"));
+        OnMatchStart?.Invoke();
 
         hero.foe = enemy;
         enemy.foe = hero;
@@ -123,9 +137,9 @@ public class BattlefieldManager : MonoBehaviour
     public void PutCardInHand(Champion champion, CardDefinition card)
     {
         if (champion.name == "Hero")
-            heroHand.PutCardInHand(card);
+            heroHand.PutCardInHand(champion, card);
         else
-            enemyHand.PutCardInHand(card);
+            enemyHand.PutCardInHand(champion, card);
     }
 
     public void RemoveCardFromHand(Champion champion, CardDefinition card)
@@ -136,10 +150,10 @@ public class BattlefieldManager : MonoBehaviour
             enemyHand.RemoveCardFromHand(card);
     }
 
-    public void ShowCard(CardDefinition card)
+    public void ShowCard(CardDefinition card, Champion champion)
     {
         showCardAnchor.gameObject.SetActive(true);
-        Instantiate(cardPrefab, showCardAnchor).Bootup(card, false);
+        Instantiate(cardPrefab, showCardAnchor).Bootup(card, false, champion);
     }
 
     public void StopShowingCard()

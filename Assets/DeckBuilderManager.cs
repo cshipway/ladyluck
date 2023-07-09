@@ -19,6 +19,8 @@ public class DeckBuilderManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        Card.OnDeckChanged += OnDeckChanged;
+        BattlefieldManager.OnMatchStart += OnMatchStart;
     }
 
     private void Update()
@@ -30,6 +32,8 @@ public class DeckBuilderManager : MonoBehaviour
                 deckBuilding = true;
                 activeToggler.SetActive(deckBuilding);
                 battlefieldTextActiveToggler.SetActive(!deckBuilding);
+                heroDeckBuilder.Populate(BattlefieldManager.Instance.hero, heroDeck);
+                enemyDeckBuilder.Populate(BattlefieldManager.Instance.enemy, enemyDeck);
             }
         }
         else
@@ -43,15 +47,36 @@ public class DeckBuilderManager : MonoBehaviour
         }
     }
 
-    public void SetHeroDeck(Deck deck)
+    private void OnMatchStart()
     {
-        heroDeck = deck;
-        heroDeckBuilder.Populate(heroDeck);
+        deckBuilding = true;
+        activeToggler.SetActive(deckBuilding);
+        battlefieldTextActiveToggler.SetActive(!deckBuilding);
+        heroDeckBuilder.Populate(BattlefieldManager.Instance.hero, heroDeck);
+        enemyDeckBuilder.Populate(BattlefieldManager.Instance.enemy, enemyDeck);
     }
 
-    public void SetEnemyDeck(Deck deck)
+    public void SetHeroDeck(Champion champion,Deck deck)
+    {
+        Debug.Log("DBM Setting Hero deck");
+        heroDeck = deck;
+        heroDeckBuilder.Populate(champion, heroDeck);
+    }
+
+    public void SetEnemyDeck(Champion champion, Deck deck)
     {
         enemyDeck = deck;
-        enemyDeckBuilder.Populate(enemyDeck);
+        enemyDeckBuilder.Populate(champion, enemyDeck);
+    }
+
+    private void OnDeckChanged()
+    {
+        heroDeck.cards.Clear();
+        foreach (Card card in heroDeckBuilder.GetComponentsInChildren<Card>())
+            heroDeck.cards.Add(card.cardDefinition);
+
+        enemyDeck.cards.Clear();
+        foreach (Card card in enemyDeckBuilder.GetComponentsInChildren<Card>())
+            enemyDeck.cards.Add(card.cardDefinition);
     }
 }
