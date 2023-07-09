@@ -20,7 +20,7 @@ MonoBehaviour:
     to rest!"'
   - Ralderbahn charged!
   hasBattle: 1
-  scenarioMusicTrack: {fileID: 8300000, guid: e5df68f761d75804c90ce54c8efac259, type: 3}
+  scenarioMusicTrack: {fileID: 8300000, guid: 75fad293e2a2fab4e93cad7d3ce10bc2, type: 3}
   heroDeckDefinition: {fileID: 11400000, guid: 417df56113281e74486343d775a4b2ea, type: 2}
   enemyDeckDefinition: {fileID: 11400000, guid: 46d178d96431344449b77ae88110e085, type: 2}
   scenarioOutroStrings:

@@ -24,7 +24,7 @@ MonoBehaviour:
   - Why was it he felt there was something he absolutely had to accomplish?
   - The hero stood to face the cloaked figure and look it in the eye.
   hasBattle: 1
-  scenarioMusicTrack: {fileID: 8300000, guid: e5df68f761d75804c90ce54c8efac259, type: 3}
+  scenarioMusicTrack: {fileID: 8300000, guid: 75fad293e2a2fab4e93cad7d3ce10bc2, type: 3}
   heroDeckDefinition: {fileID: 11400000, guid: b33390bb15b355f418936ae122bf084b, type: 2}
   enemyDeckDefinition: {fileID: 11400000, guid: 403102a31dba28f459c37acac38bd21d, type: 2}
   scenarioOutroStrings:
