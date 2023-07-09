@@ -40,14 +40,17 @@ public class BattlefieldManager : MonoBehaviour
     {
         this.scenario = scenario;
 
-        hero = new Champion("Hero", scenario.heroDeckDefinition.startingHp, new Deck() { cards = new List<CardDefinition>(scenario.heroDeckDefinition.deck.cards) });
-        enemy = new Champion(scenario.enemyDeckDefinition.name, scenario.enemyDeckDefinition.startingHp, new Deck() { cards = new List<CardDefinition>(scenario.enemyDeckDefinition.deck.cards) });
+        if(scenario.hasBattle)
+        {
+            hero = new Champion("Hero", scenario.heroDeckDefinition.startingHp, new Deck() { cards = new List<CardDefinition>(scenario.heroDeckDefinition.deck.cards) });
+            enemy = new Champion(scenario.enemyDeckDefinition.name, scenario.enemyDeckDefinition.startingHp, new Deck() { cards = new List<CardDefinition>(scenario.enemyDeckDefinition.deck.cards) });
 
-        if (scenario.enemyDeckDefinition.portrait != null)
-            hudEnemyPortrait.sprite = scenario.enemyDeckDefinition.portrait;
+            if (scenario.enemyDeckDefinition.portrait != null)
+                hudEnemyPortrait.sprite = scenario.enemyDeckDefinition.portrait;
 
-        DeckBuilderManager.Instance.SetHeroDeck(hero, hero.deck);
-        DeckBuilderManager.Instance.SetEnemyDeck(enemy, enemy.deck);
+            DeckBuilderManager.Instance.SetHeroDeck(hero, hero.deck);
+            DeckBuilderManager.Instance.SetEnemyDeck(enemy, enemy.deck);
+        }
 
         StartBattle();
     }
@@ -87,50 +90,94 @@ public class BattlefieldManager : MonoBehaviour
         foreach(string s in scenario.scenarioIntroStrings)
             yield return StartCoroutine(ShowReasonableText(s));
 
-        MusicManager.Instance.PlayMusic(scenario.scenarioMusicTrack);
-        MusicManager.Instance.PlayBoxingRingBell();
-
-        yield return StartCoroutine(ShowBigText("Match Start!"));
-        yield return StartCoroutine(ShowReasonableText("Fortuna twists the threads of fate..."));
-
-        DeckBuilderManager.Instance.OnMatchStart();
-
-        hero.foe = enemy;
-        enemy.foe = hero;
-
-        isAutobattling = true;
-
-        int round = 1;
-
-        while (hero.hp > 0 && enemy.hp > 0)
+        if(scenario.hasBattle)
         {
-            //Put this here in case the while loop gets stuck.
-            if (round > 100)
-                break;
-
-            yield return StartCoroutine(hero.TakeTurn(this, round));
-
-            if (hero.hp <= 0 || enemy.hp <= 0)
-                break;
-
-            yield return StartCoroutine(enemy.TakeTurn(this, round));
-
-            if (hero.hp <= 0 || enemy.hp <= 0)
-                break;
-
-            round++;
-        }
-
-        if (hero.hp > 0)
-        {
+            MusicManager.Instance.PlayMusic(scenario.scenarioMusicTrack);
             MusicManager.Instance.PlayBoxingRingBell();
-            MusicManager.Instance.PlayVictoryMusic();
 
-            yield return StartCoroutine(ShowBigText($"{hero.name} wins!"));
+            yield return StartCoroutine(ShowBigText("Match Start!"));
 
-            foreach (string s in scenario.scenarioOutroStrings)
-                yield return StartCoroutine(ShowReasonableText(s));
+            if(FlowManager.scenarioIndex == 1)
+            {
+                string[] tutorialStrings = new string[7]
+                {
+                    "(TUTORIAL: At the beginning of each battle, you'll be presented with the decklist for both the hero and his foe.)",
+                    "(When they draw cards, they'll draw them from the top-left of their respective decks.)",
+                    "(As the Goddess of Luck, click and drag cards to stack them however you see fit! Try to give your champion an edge while taking his foe down a peg!)",
+                    "(When you're done manipulating chance, press the [D] key to return to the normal course of battle.)",
+                    "(Oh, and this is really important: At any point during the battle, press the [D] key again to bring up the decklist!)",
+                    "(That's right! You can alter fate whenever you want, even after the fight has already started.)",
+                    "(Try not to get your hapless disciple killed! Good luck!)"
+                };
+                foreach (string ts in tutorialStrings)
+                    yield return StartCoroutine(ShowReasonableText(ts));
+            }
 
+            yield return StartCoroutine(ShowReasonableText("Fortuna twists the threads of fate..."));
+
+            DeckBuilderManager.Instance.OnMatchStart();
+
+            hero.foe = enemy;
+            enemy.foe = hero;
+
+            isAutobattling = true;
+
+            int round = 1;
+
+            while (hero.hp > 0 && enemy.hp > 0)
+            {
+                //Put this here in case the while loop gets stuck.
+                if (round > 100)
+                    break;
+
+                yield return StartCoroutine(hero.TakeTurn(this, round));
+
+                if (hero.hp <= 0 || enemy.hp <= 0)
+                    break;
+
+                yield return StartCoroutine(enemy.TakeTurn(this, round));
+
+                if (hero.hp <= 0 || enemy.hp <= 0)
+                    break;
+
+                round++;
+            }
+
+            if (hero.hp > 0)
+            {
+                MusicManager.Instance.PlayBoxingRingBell();
+                MusicManager.Instance.PlayVictoryMusic();
+
+                yield return StartCoroutine(ShowBigText($"{hero.name} wins!"));
+
+                foreach (string s in scenario.scenarioOutroStrings)
+                    yield return StartCoroutine(ShowReasonableText(s));
+
+                yield return new WaitForSeconds(1);
+
+                yield return StartCoroutine(FadeSceneOut());
+
+                yield return new WaitForSeconds(1);
+
+                FlowManager.NextScenario();
+            }
+
+            else
+            {
+                MusicManager.Instance.StopPlayingMusic();
+
+                yield return StartCoroutine(ShowBigText($"{hero.name} loses!"));
+                yield return StartCoroutine(ShowReasonableText($"Fortuna is made a mockery of this day."));
+                yield return StartCoroutine(ShowReasonableText($"Click to Try Again."));
+
+                yield return StartCoroutine(FadeSceneOut());
+
+                yield return new WaitForSeconds(1);
+                FlowManager.RestartScenario();
+            }
+        }
+        else
+        {
             yield return new WaitForSeconds(1);
 
             yield return StartCoroutine(FadeSceneOut());
@@ -139,21 +186,6 @@ public class BattlefieldManager : MonoBehaviour
 
             FlowManager.NextScenario();
         }
-            
-        else
-        {
-            MusicManager.Instance.StopPlayingMusic();
-
-            yield return StartCoroutine(ShowBigText($"{hero.name} loses!"));
-            yield return StartCoroutine(ShowReasonableText($"Fortuna is made a mockery of this day."));
-            yield return StartCoroutine(ShowReasonableText($"Click to Try Again."));
-
-            yield return StartCoroutine(FadeSceneOut());
-
-            yield return new WaitForSeconds(1);
-            FlowManager.RestartScenario();
-        }
-            
     }
 
     public IEnumerator ShowBigText(string message)

@@ -119,6 +119,11 @@ public class Card : MonoBehaviour
         if (cardTurnAnim != 0)
             cardTurnAnim = Mathf.SmoothDamp(cardTurnAnim, 0, ref cardTurnSdVelocity, 0.25f);
         animAnchor.localEulerAngles = new Vector3(0, 0, cardTurnAnim);
+
+        if(IsMousedOver && dragCard == null)
+        {
+            Tooltip.SetTooltip(champion, cardDefinition);
+        }
     }
 
     private void Render()

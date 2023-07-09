@@ -14,9 +14,15 @@ public class FlowManager : MonoBehaviour
         BattlefieldManager.Instance.StartScenario(scenarios[scenarioIndex]);
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.S) && scenarioIndex == 0)
+            NextScenario();
+    }
+
     public static void NextScenario()
     {
-        if (scenarioIndex < 2)
+        if (scenarioIndex < 3)
         {
             scenarioIndex++;
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);

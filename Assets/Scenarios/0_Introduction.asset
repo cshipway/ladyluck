@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31182ddf59ee8ca4d94c8bbc419bc5cf, type: 3}
+  m_Name: 0_Introduction
+  m_EditorClassIdentifier: 
+  scenarioIntroStrings:
+  - Our story begins on the celestial plane where the constellations shimmer and
+    the gods reside in their perpetual and well-deserved dominion. (Click to continue.
+    [S] key to skip intro.)
+  - It was a typical congregation of the greater deities, who had succumbed as usual
+    to their favorite pastime of arguing about mortals.
+  - 'Today the topic of dispute was something like this: what most are the traits
+    that elevate a man to greatness?'
+  - 'Ralderbahn, the god of frenzied rage and indomitable strength, held firm in
+    the matter:'
+  - '"Barring doubt and without question, ''tis the fearsome might to shatter stone
+    and cleave mountains!"'
+  - 'Muros, the gatekeeper of the abyss, spoke rarely but spoke now:'
+  - '"''Tis swift cunning, swift as the shadows which reclaim what the light stole
+    just soon as the candle is snuffed."'
+  - 'Reletrix, whose unblinking eye sees further than his many-armed reach is long,
+    stated matter-of-factly:'
+  - '"You are both wrong. ''Tis, of course, the sharp twinkling of intellect, cold
+    and bright like the Shiver Star, which gives way to the greatest deeds."'
+  - 'But the gods stood surprised when a fourth voice called out, interrupting their
+    trial in a most unwelcome manner:'
+  - '"None of you have the right of it!"'
+  - The visages of the greater ones turned to scowl at their guest, who stepping
+    into the light of the fiery spheres revealed herself as Fortuna, the mere lesser
+    god of luck.
+  - '"Return at once to your inferior plane," hissed Reletrix, "and to your menial
+    duties of declaring how fall the bones thrown."'
+  - The other gods nodded in agreement.
+  - 'Yet, she continued: "Neither might nor swiftness nor intellect shall suffice
+    for greatness, without my say-so."'
+  - '"Rather, ''tis most the smile of circumstance -- that is, my favor -- which
+    best rises a man to dizzying heights."'
+  - The hall was in uproar. The three in bellows conspired to throw out the intruder,
+    which would have cast a white arc that pierced the firmament, but--
+  - Fortuna asked, "If so sure you three are of your lofty claims, and so convinced
+    of the absurdity of mine, then why not put it to a wager?"
+  - The bellows ceased and the stars for some time shone in silence. She had known
+    that the one thing no god could resist was a wager.
+  - '"What kind of wager?" murmured Ralderbahn, as Reletrix stroked his chin thoughtfully.'
+  - And so begins our tale, but now in earnest...
+  hasBattle: 0
+  scenarioMusicTrack: {fileID: 0}
+  heroDeckDefinition: {fileID: 0}
+  enemyDeckDefinition: {fileID: 0}
+  scenarioOutroStrings: []
