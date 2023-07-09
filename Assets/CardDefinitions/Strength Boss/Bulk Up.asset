@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20fad8a755859a54c9f3a8a79763df9c, type: 3}
   m_Name: Bulk Up
   m_EditorClassIdentifier: 
+  prependDescription: 
   portrait: {fileID: 0}
-  manaCost: 1
+  manaCost: 2
   cardEffects:
   - name: Gain 1 strength for the rest of the battle.
     damage: 0

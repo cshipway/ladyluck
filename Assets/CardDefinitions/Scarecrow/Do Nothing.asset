@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prependDescription: 
   portrait: {fileID: 0}
-  manaCost: 1
+  manaCost: 0
   cardEffects: []
   conditionalEffects: []
   appendDescription: This card has no effect.

@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: StartingDeck
   m_EditorClassIdentifier: 
   portrait: {fileID: 0}
+  startingHp: 10
   deck:
     cards:
     - {fileID: 11400000, guid: a84c1d0c6068f484b91f4ddb408ba88e, type: 2}
-    - {fileID: 11400000, guid: a84c1d0c6068f484b91f4ddb408ba88e, type: 2}
-    - {fileID: 11400000, guid: c8df6c33fdb85d14991da1d620050512, type: 2}
     - {fileID: 11400000, guid: e50414e7c90747d49a11654d0192db59, type: 2}
+    - {fileID: 11400000, guid: c8df6c33fdb85d14991da1d620050512, type: 2}
+    - {fileID: 11400000, guid: 0c6ec1edcc62f2848a2a150a7cd2129d, type: 2}
     - {fileID: 11400000, guid: a4694c117ca0e604da87d15e962fc997, type: 2}

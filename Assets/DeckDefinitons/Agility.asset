@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4540943819504684fa9f5c6f351670a1, type: 3}
   m_Name: Agility
   m_EditorClassIdentifier: 
+  portrait: {fileID: 0}
+  startingHp: 10
   deck:
     cards:
-    - {fileID: 11400000, guid: 5aabdc4aa771ac448bba1fd78cc607de, type: 2}
+    - {fileID: 11400000, guid: 844340fe6e182f74fa410fba7514fcc6, type: 2}
+    - {fileID: 11400000, guid: 23ae1090dcb5786428b93101d20b1b1c, type: 2}
+    - {fileID: 11400000, guid: a87145481e091764198c17fe8814971a, type: 2}
+    - {fileID: 11400000, guid: d1bc3916b7e26dc43b67044480d6aa6b, type: 2}

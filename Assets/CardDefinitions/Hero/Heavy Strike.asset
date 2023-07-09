@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 20fad8a755859a54c9f3a8a79763df9c, type: 3}
-  m_Name: Great Strike
+  m_Name: Heavy Strike
   m_EditorClassIdentifier: 
+  prependDescription: 
   portrait: {fileID: 0}
-  manaCost: 4
+  manaCost: 3
   cardEffects:
-  - name: Deal 10 damage.
-    damage: 10
+  - name: Deal 5 damage.
+    damage: 5
     healing: 0
     searchCard: {fileID: 0}
     shuffle: 0

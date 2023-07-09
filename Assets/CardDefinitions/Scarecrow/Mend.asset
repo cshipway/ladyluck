@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prependDescription: The farmer comes to patch you up.
   portrait: {fileID: 0}
-  manaCost: 3
+  manaCost: 2
   cardEffects:
-  - name: Heal for 5.
+  - name: Heal for 8.
     damage: 0
-    healing: 5
+    healing: 8
     searchCard: {fileID: 0}
     shuffle: 0
     statusEffects: []
