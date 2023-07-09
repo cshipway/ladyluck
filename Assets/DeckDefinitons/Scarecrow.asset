@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4540943819504684fa9f5c6f351670a1, type: 3}
+  m_Name: Scarecrow
+  m_EditorClassIdentifier: 
+  deck:
+    cards:
+    - {fileID: 11400000, guid: 3aa7543e6b167c049a2b6ae3949f2ce5, type: 2}
+    - {fileID: 11400000, guid: a80fb85297b3ef8458e141cc49d4b6d4, type: 2}
+    - {fileID: 11400000, guid: 3aa7543e6b167c049a2b6ae3949f2ce5, type: 2}
+    - {fileID: 11400000, guid: 3aa7543e6b167c049a2b6ae3949f2ce5, type: 2}
+    - {fileID: 11400000, guid: 696829ced43b82f428c2b0f6ce81c356, type: 2}

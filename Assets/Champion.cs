@@ -2,6 +2,7 @@ using Newtonsoft.Json.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [System.Serializable]
@@ -146,6 +147,11 @@ public class Champion
         {
             if(conditionalEffect.condition.Evaluate(round))
                 yield return battlefield.StartCoroutine(ResolveEffect(battlefield, conditionalEffect.effect));
+        }
+
+        if(card.cardEffects.Count == 0 && card.conditionalEffects.Count == 0)
+        {
+            yield return battlefield.StartCoroutine(battlefield.ShowReasonableText("..The card has no effect."));
         }
     }
 

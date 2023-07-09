@@ -17,7 +17,7 @@ public class CardDefinition : ScriptableObject
     {
         foreach(CardEffect cardEffect in cardEffects.Concat(conditionalEffects.Select(con => con.effect)))
         {
-            cardEffect.name = cardEffect.ToString();
+            cardEffect.name = cardEffect.GetDescription(null);
 
             foreach (StatusEffectDefinition statusEffect in cardEffect.statusEffects)
             {
@@ -31,7 +31,7 @@ public class CardDefinition : ScriptableObject
         foreach(ConditionalEffect conditionalEffect in conditionalEffects)
         {
             conditionalEffect.condition.name = conditionalEffect.condition.ToString();
-            conditionalEffect.name = conditionalEffect.ToString();
+            conditionalEffect.name = conditionalEffect.GetDescription(null);
         }
     }
 
@@ -52,7 +52,7 @@ public class CardDefinition : ScriptableObject
         {
             if (count > 0)
                 description += "\n";
-            description += $"{conditionalEffect}";
+            description += $"{conditionalEffect.GetDescription(champion)}";
             count++;
         }
 

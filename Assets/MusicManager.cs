@@ -9,7 +9,7 @@ public class MusicManager : MonoBehaviour
     private AudioSource audioSource;
     private float currentAnim = 1;
     private float velocity;
-
+    private bool muted = false;
     
 
     private void Awake()
@@ -20,6 +20,9 @@ public class MusicManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.M))
+            muted = !muted;
+
         bool a = activeWatcher.activeSelf;
 
         float target = a ? 0: 1;
@@ -27,7 +30,7 @@ public class MusicManager : MonoBehaviour
         currentAnim = Mathf.SmoothDamp(currentAnim, target, ref velocity, 0.25f);
 
         audioSource.pitch = 0.5f + (currentAnim * 0.5f);
-        audioSource.volume = (0.5f + (currentAnim * 0.5f)) * 0.25f;
+        audioSource.volume = (0.5f + (currentAnim * 0.5f)) * 0.25f * (muted ? 0: 1);
 
         cameraTf.transform.position = Vector3.Lerp(new Vector3(0, 2.5f, 0), new Vector3(0, 1.25f, -0.3f), currentAnim);
         cameraTf.transform.localEulerAngles = Vector3.Lerp(new Vector3(90, 0, 0), new Vector3(80, 0, 0), currentAnim);
