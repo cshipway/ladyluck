@@ -12,5 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31182ddf59ee8ca4d94c8bbc419bc5cf, type: 3}
   m_Name: 3_Muros
   m_EditorClassIdentifier: 
+  scenarioIntroStrings:
+  - Death needs no introduction.
+  scenarioMusicTrack: {fileID: 8300000, guid: 323bc10a981616740a265c5999e9f11a, type: 3}
   heroDeckDefinition: {fileID: 11400000, guid: b33390bb15b355f418936ae122bf084b, type: 2}
   enemyDeckDefinition: {fileID: 11400000, guid: 403102a31dba28f459c37acac38bd21d, type: 2}
+  scenarioOutroStrings:
+  - I'm gonna be honest -- there's nothing left.
+  - That's all the content we've prepared.
+  - Congrats! You beat the game!
+  - You can press Escape to quit the game. Please rate us well.

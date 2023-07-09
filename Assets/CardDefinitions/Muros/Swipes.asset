@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Swipes
   m_EditorClassIdentifier: 
   prependDescription: 
-  portrait: {fileID: 0}
+  portrait: {fileID: 21300000, guid: db70006e40a343d40b700e15dd982118, type: 3}
   manaCost: 1
   cardEffects:
   - name: Deal 3 damage.

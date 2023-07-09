@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Heavy Strike
   m_EditorClassIdentifier: 
   prependDescription: 
-  portrait: {fileID: 0}
+  portrait: {fileID: 21300000, guid: 7439b7153bb83d84f9e567f41bfa0959, type: 3}
   manaCost: 3
   cardEffects:
   - name: Deal 5 damage.

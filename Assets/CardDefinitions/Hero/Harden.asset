@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Harden
   m_EditorClassIdentifier: 
   prependDescription: 
-  portrait: {fileID: 0}
+  portrait: {fileID: 21300000, guid: f7614e6eaf186f645bdd05aa672f10a2, type: 3}
   manaCost: 1
   cardEffects:
   - name: Gain 1 armor for the rest of the battle.

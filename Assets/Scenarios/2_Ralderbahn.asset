@@ -12,5 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31182ddf59ee8ca4d94c8bbc419bc5cf, type: 3}
   m_Name: 2_Ralderbahn
   m_EditorClassIdentifier: 
+  scenarioIntroStrings:
+  - IT'S RALDERBAHN TIME BAY-BEE
+  scenarioMusicTrack: {fileID: 8300000, guid: 323bc10a981616740a265c5999e9f11a, type: 3}
   heroDeckDefinition: {fileID: 11400000, guid: 417df56113281e74486343d775a4b2ea, type: 2}
   enemyDeckDefinition: {fileID: 11400000, guid: 46d178d96431344449b77ae88110e085, type: 2}
+  scenarioOutroStrings:
+  - Hero gains +5 Base Health!
+  - Hero has added another copy of Strike to his deck!
+  - 'Hero has added a new card to his deck: Rally!'
+  - Hero takes a page out of Ralderbahn's playbook... Hero has added Enrage to his
+    deck!
+  - ...
+  - '"I have to admit, I did not expect that to happen," Ralderbahn had to admit.'
+  - '"You probably won''t beat Muros, though," Ralderbahn said, bleeding out.'
+  - '"I don''t know, we probably will," the goddess retorted.'
+  - '"But <i>will</i> you, though?" said Ralderbahn, who was now dead.'
+  - The hero set off for the Death Zone. Here he goes now -- just look at him.

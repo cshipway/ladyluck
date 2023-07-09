@@ -82,7 +82,7 @@ public class Champion
 
     public IEnumerator DrawStartingHand(BattlefieldManager battlefield)
     {
-        yield return battlefield.StartCoroutine(battlefield.ShowReasonableText($"{name} is about to draw their starting hand..."));
+        yield return battlefield.StartCoroutine(battlefield.ShowReasonableText($"{name} is about to draw their starting hand... (3 cards)"));
 
         for (int i = 0; i < 3; i++)
         {
@@ -92,6 +92,7 @@ public class Champion
             {
                 hand.Add(drawn);
                 battlefield.PutCardInHand(this, drawn);
+                MusicManager.Instance.PlayCard();
                 yield return battlefield.StartCoroutine(battlefield.ShowReasonableText($"{name} draws {drawn.name}."));
             }
         }
@@ -107,13 +108,16 @@ public class Champion
         {
             hand.Add(drawn);
             battlefield.PutCardInHand(this, drawn);
+            MusicManager.Instance.PlayCard();
             yield return battlefield.StartCoroutine(battlefield.ShowReasonableText($"{name} draws {drawn.name}."));
         }
         else
         {
+            MusicManager.Instance.PlayNoEffect();
             yield return battlefield.StartCoroutine(battlefield.ShowReasonableText($"{name} tries to draw, but their deck is empty!"));
 
             hp -= ++fatigue;
+            MusicManager.Instance.PlayDamage();
             yield return battlefield.StartCoroutine(battlefield.ShowReasonableText($"{name} takes {fatigue} damage from fatigue."));
         }
     }
@@ -144,10 +148,11 @@ public class Champion
     private IEnumerator PlayCard(BattlefieldManager battlefield, CardDefinition card, int round)
     {
         mp -= card.manaCost;
+        MusicManager.Instance.PlayCard();
         Debug.Log($"{name} plays {card.name}!");
         battlefield.RemoveCardFromHand(this, card);
         battlefield.ShowCard(card, this);
-        yield return battlefield.StartCoroutine(battlefield.ShowReasonableText($"{name} plays {card.name}!"));
+        yield return battlefield.StartCoroutine(battlefield.ShowReasonableText($"{name} plays {card.name}!", true));
         battlefield.StopShowingCard();
 
         foreach(CardEffect cardEffect in card.cardEffects)
@@ -163,7 +168,8 @@ public class Champion
 
         if(card.cardEffects.Count == 0 && card.conditionalEffects.Count == 0)
         {
-            yield return battlefield.StartCoroutine(battlefield.ShowReasonableText("..The card has no effect."));
+            MusicManager.Instance.PlayNoEffect();
+            yield return battlefield.StartCoroutine(battlefield.ShowReasonableText("...The card has no effect."));
         }
     }
 
@@ -172,16 +178,24 @@ public class Champion
         if (cardEffect.damage > 0)
         {
             int d = cardEffect.damage + (Strength * StrengthMultiplier) - foe.Armor;
-            if (d < 0)
+            if (d <= 0)
+            {
+                MusicManager.Instance.PlayNoEffect();
                 d = 0;
-            foe.hp -= d;
-
+            }
+            else
+            {
+                MusicManager.Instance.PlayDamage();
+                foe.hp -= d;
+            }
+            
             Debug.Log($"{name} deals {d} damage to {foe.name}! Foe HP: {foe.hp}");
             yield return battlefield.StartCoroutine(battlefield.ShowReasonableText($"{name} deals {d} damage to {foe.name}!"));
         }
 
         if (cardEffect.healing > 0)
         {
+            MusicManager.Instance.PlayHeal();
             hp += cardEffect.healing;
             Debug.Log($"{name} heals for {cardEffect.healing}! HP: {hp}");
             yield return battlefield.StartCoroutine(battlefield.ShowReasonableText($"{name} heals for {cardEffect.healing}!"));
@@ -191,6 +205,7 @@ public class Champion
         {
             statusEffects.Add(new StatusEffectInfo() { definition = statusEffect });
             Debug.Log($"{name} gains {statusEffect}.");
+            MusicManager.Instance.PlayBuff();
             yield return battlefield.StartCoroutine(battlefield.ShowReasonableText($"{name} gains {statusEffect}!"));
         }
     }

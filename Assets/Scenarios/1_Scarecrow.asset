@@ -12,5 +12,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31182ddf59ee8ca4d94c8bbc419bc5cf, type: 3}
   m_Name: 1_Scarecrow
   m_EditorClassIdentifier: 
+  scenarioIntroStrings:
+  - Having chosen her "hero", the goddess watched bemusedly as the hapless lad stumbled
+    onto a plot of ordinary farmland.
+  - '"This scarecrow should suffice as a training dummy for my soon-to-be champion,"
+    she resolved.'
+  - The lad regarded the patchwork person with a sense of awe and terror, seemingly
+    not relieved that it lacked any obvious ability to retaliate in the impending
+    bout.
+  - '"Even so, the scarecrow does seem fairly well-made... I hope my disciple doesn''t
+    simply tire himself out trying to destroy it."'
+  - The hero lifted a trembling blade as the goddess began her handiwork...
+  scenarioMusicTrack: {fileID: 8300000, guid: 323bc10a981616740a265c5999e9f11a, type: 3}
   heroDeckDefinition: {fileID: 11400000, guid: 84f612329f946344c8acadef8717e6b9, type: 2}
   enemyDeckDefinition: {fileID: 11400000, guid: 52523c2a6e3d55544a0156a2487740be, type: 2}
+  scenarioOutroStrings:
+  - Hero gains +5 Base Health!
+  - Hero has added another copy of Strike to his deck!
+  - 'Hero has added a new card to his deck: Opening Gambit!'
+  - Hero takes a page out of the scarecrow's playbook... Hero has added Mend to his
+    deck!
+  - ...
+  - With a flash of Ty'rixian sunsteel, the durable dummy lay at last in tatters.
+  - The alleged hero heaved a sigh of relief. The goddess merely smiled.
+  - '"I should think my champion is ready now to face his proper destiny," she resolved.'
+  - The hapless boy, led only by the irresistible tug of fate, started to tread towards
+    that spot on the horizon where the blood red sun dipped below blackened earth.
+  - Ralderbahn, the god of frenzied rage and indomitable strength, he had heard,
+    was not known for his hospitable treatment of guests...

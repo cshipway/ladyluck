@@ -78,6 +78,7 @@ public class Card : MonoBehaviour
 
                 dragCard.CardTurnAnimation(rising ? -90f : 90f);
                 CardTurnAnimation(rising ? -5f : 5f);
+                MusicManager.Instance.PlayCard();
 
                 OnDeckChanged?.Invoke();
             }
@@ -131,6 +132,8 @@ public class Card : MonoBehaviour
             cardManacostText.color = cardDefinition.manaCost > 0 ? Color.white : new Color32(255, 255, 255, 32);
             cardManacostText.text = cardDefinition.manaCost.ToString();
             cardPortraitImage.sprite = cardDefinition.portrait;
+            if (cardDefinition.portrait != null)
+                cardPortraitImage.color = Color.white;
             
             cardDescriptionText.text = cardDefinition.GetDescription(champion);
         }

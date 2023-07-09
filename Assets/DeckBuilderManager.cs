@@ -13,6 +13,8 @@ public class DeckBuilderManager : MonoBehaviour
     [SerializeField] private DeckBuilder enemyDeckBuilder;
     [SerializeField] private GameObject activeToggler;
     [SerializeField] private GameObject battlefieldTextActiveToggler;
+    [SerializeField] private GameObject ladyLuckPortrait;
+    [SerializeField] private GameObject heroPortrait;
 
     public bool deckBuilding;
 
@@ -20,7 +22,11 @@ public class DeckBuilderManager : MonoBehaviour
     {
         Instance = this;
         Card.OnDeckChanged += OnDeckChanged;
-        BattlefieldManager.OnMatchStart += OnMatchStart;
+    }
+
+    private void OnDestroy()
+    {
+        Card.OnDeckChanged -= OnDeckChanged;
     }
 
     private void Update()
@@ -29,6 +35,7 @@ public class DeckBuilderManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.D))
             {
+                MusicManager.Instance.PlayBuff();
                 deckBuilding = true;
                 activeToggler.SetActive(deckBuilding);
                 battlefieldTextActiveToggler.SetActive(!deckBuilding);
@@ -40,15 +47,21 @@ public class DeckBuilderManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.D))
             {
+                //MusicManager.Instance.PlayShuffle();
+                MusicManager.Instance.PlayBuff();
                 deckBuilding = false;
                 activeToggler.SetActive(deckBuilding);
                 battlefieldTextActiveToggler.SetActive(!deckBuilding);
             }
         }
+
+        ladyLuckPortrait.SetActive(deckBuilding);
+        heroPortrait.SetActive(!deckBuilding);
     }
 
-    private void OnMatchStart()
+    public void OnMatchStart()
     {
+        MusicManager.Instance.PlayBuff();
         deckBuilding = true;
         activeToggler.SetActive(deckBuilding);
         battlefieldTextActiveToggler.SetActive(!deckBuilding);
@@ -58,7 +71,6 @@ public class DeckBuilderManager : MonoBehaviour
 
     public void SetHeroDeck(Champion champion,Deck deck)
     {
-        Debug.Log("DBM Setting Hero deck");
         heroDeck = deck;
         heroDeckBuilder.Populate(champion, heroDeck);
     }

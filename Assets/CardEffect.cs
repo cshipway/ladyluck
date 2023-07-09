@@ -62,6 +62,8 @@ public class CardEffect
         isDamageAdjusted = (champion != null && champion.foe != null) && (champion.Strength > 0 || champion.foe.Armor > 0);
         if (isDamageAdjusted)
             d = damage + (champion.Strength * champion.StrengthMultiplier) - champion.foe.Armor;
+        if (d < 0)
+            d = 0;
 
         toRet += $"Deal {(isDamageAdjusted ? $"*{d}*" : d)} damage.";
         return toRet;

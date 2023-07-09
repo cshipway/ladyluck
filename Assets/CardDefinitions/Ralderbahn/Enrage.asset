@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Enrage
   m_EditorClassIdentifier: 
   prependDescription: 
-  portrait: {fileID: 0}
+  portrait: {fileID: 21300000, guid: 96200955f6385d94f8322fa297b7853d, type: 3}
   manaCost: 0
   cardEffects: []
   conditionalEffects:

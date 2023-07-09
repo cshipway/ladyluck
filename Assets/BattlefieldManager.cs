@@ -29,21 +29,21 @@ public class BattlefieldManager : MonoBehaviour
     [SerializeField] public Champion hero;
     [SerializeField] public Champion enemy;
 
-    [SerializeField] private ScenarioDefinition scenario;
-
-    public static event Action OnMatchStart;
+    private ScenarioDefinition scenario;
 
     private void Awake()
     {
         Instance = this;
     }
 
-    private void Start()
+    public void StartScenario(ScenarioDefinition scenario)
     {
+        this.scenario = scenario;
+
         hero = new Champion("Hero", scenario.heroDeckDefinition.startingHp, new Deck() { cards = new List<CardDefinition>(scenario.heroDeckDefinition.deck.cards) });
         enemy = new Champion(scenario.enemyDeckDefinition.name, scenario.enemyDeckDefinition.startingHp, new Deck() { cards = new List<CardDefinition>(scenario.enemyDeckDefinition.deck.cards) });
 
-        if(scenario.enemyDeckDefinition.portrait != null)
+        if (scenario.enemyDeckDefinition.portrait != null)
             hudEnemyPortrait.sprite = scenario.enemyDeckDefinition.portrait;
 
         DeckBuilderManager.Instance.SetHeroDeck(hero, hero.deck);
@@ -61,6 +61,10 @@ public class BattlefieldManager : MonoBehaviour
             hudEnemyHpText.text = enemy.hp.ToString();
             hudEnemyMpText.text = enemy.mp.ToString();
         }
+
+        //Skip cheat
+        if (Input.GetKey(KeyCode.RightShift) && Input.GetKeyDown(KeyCode.Alpha0))
+            FlowManager.NextScenario();
     }
 
     public void StartBattle()
@@ -70,8 +74,26 @@ public class BattlefieldManager : MonoBehaviour
 
     private IEnumerator Autobattle()
     {
+        MusicManager.Instance.PlayHowlingWind();
+
+        ScreenFadeManager.Instance.SetFade(1);
+
+        yield return new WaitForSeconds(1);
+
+        yield return StartCoroutine(FadeSceneIn());
+
+        yield return new WaitForSeconds(1);
+
+        foreach(string s in scenario.scenarioIntroStrings)
+            yield return StartCoroutine(ShowReasonableText(s));
+
+        MusicManager.Instance.PlayMusic(scenario.scenarioMusicTrack);
+        MusicManager.Instance.PlayBoxingRingBell();
+
         yield return StartCoroutine(ShowBigText("Match Start!"));
-        OnMatchStart?.Invoke();
+        yield return StartCoroutine(ShowReasonableText("Fortuna twists the threads of fate..."));
+
+        DeckBuilderManager.Instance.OnMatchStart();
 
         hero.foe = enemy;
         enemy.foe = hero;
@@ -100,9 +122,38 @@ public class BattlefieldManager : MonoBehaviour
         }
 
         if (hero.hp > 0)
+        {
+            MusicManager.Instance.PlayBoxingRingBell();
+            MusicManager.Instance.PlayVictoryMusic();
+
             yield return StartCoroutine(ShowBigText($"{hero.name} wins!"));
+
+            foreach (string s in scenario.scenarioOutroStrings)
+                yield return StartCoroutine(ShowReasonableText(s));
+
+            yield return new WaitForSeconds(1);
+
+            yield return StartCoroutine(FadeSceneOut());
+
+            yield return new WaitForSeconds(1);
+
+            FlowManager.NextScenario();
+        }
+            
         else
-            yield return StartCoroutine(ShowBigText($"{enemy.name} wins!"));
+        {
+            MusicManager.Instance.StopPlayingMusic();
+
+            yield return StartCoroutine(ShowBigText($"{hero.name} loses!"));
+            yield return StartCoroutine(ShowReasonableText($"Fortuna is made a mockery of this day."));
+            yield return StartCoroutine(ShowReasonableText($"Click to Try Again."));
+
+            yield return StartCoroutine(FadeSceneOut());
+
+            yield return new WaitForSeconds(1);
+            FlowManager.RestartScenario();
+        }
+            
     }
 
     public IEnumerator ShowBigText(string message)
@@ -115,12 +166,19 @@ public class BattlefieldManager : MonoBehaviour
         yield return new WaitUntil(() => (Input.GetKeyDown(KeyCode.Return) || Input.GetMouseButtonDown(0)) && !DeckBuilderManager.Instance.deckBuilding);
 
         bigText.transform.parent.gameObject.SetActive(false);
+        MusicManager.Instance.PlayProceed();
     }
 
-    public IEnumerator ShowReasonableText(string message)
+    public IEnumerator ShowReasonableText(string message, bool bottom = false)
     {
         reasonableText.transform.parent.gameObject.SetActive(true);
         reasonableText.text = message;
+
+        if (bottom)
+            reasonableText.transform.parent.parent.localPosition = new Vector3(0, -150f, 0);
+        else
+            reasonableText.transform.parent.parent.localPosition = Vector3.zero;
+
 
         float anim = 1;
         while(anim > 0)
@@ -136,6 +194,7 @@ public class BattlefieldManager : MonoBehaviour
         yield return new WaitUntil(() => (Input.GetKeyDown(KeyCode.Return) || Input.GetMouseButtonDown(0)) && !DeckBuilderManager.Instance.deckBuilding);
 
         reasonableText.transform.parent.gameObject.SetActive(false);
+        MusicManager.Instance.PlayProceed();
     }
 
     public void PutCardInHand(Champion champion, CardDefinition card)
@@ -165,5 +224,37 @@ public class BattlefieldManager : MonoBehaviour
         if (showCardAnchor.childCount > 0)
             Destroy(showCardAnchor.GetChild(0).gameObject);
         showCardAnchor.gameObject.SetActive(false);
+    }
+
+    private IEnumerator FadeSceneIn()
+    {
+        float time = 0;
+        float duration = 2.5f;
+
+        while (time < duration)
+        {
+            ScreenFadeManager.Instance.SetFade(1 - (time / duration));
+
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        ScreenFadeManager.Instance.SetFade(0);
+    }
+
+    private IEnumerator FadeSceneOut()
+    {
+        float time = 0;
+        float duration = 2.5f;
+
+        while (time < duration)
+        {
+            ScreenFadeManager.Instance.SetFade(time / duration);
+
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        ScreenFadeManager.Instance.SetFade(1);
     }
 }
