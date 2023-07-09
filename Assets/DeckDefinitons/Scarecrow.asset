@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Scarecrow
   m_EditorClassIdentifier: 
   portrait: {fileID: 21300000, guid: 11a603db100fe464d88bd883a17c9547, type: 3}
-  startingHp: 12
+  startingHp: 15
   deck:
     cards:
+    - {fileID: 11400000, guid: 6c16df90bccd792468806167af71ffcc, type: 2}
+    - {fileID: 11400000, guid: 72f83313174aa754bae3d978aed1ded0, type: 2}
     - {fileID: 11400000, guid: 696829ced43b82f428c2b0f6ce81c356, type: 2}
-    - {fileID: 11400000, guid: 3aa7543e6b167c049a2b6ae3949f2ce5, type: 2}
+    - {fileID: 11400000, guid: 782655e3431b10745ba9673ad89bb680, type: 2}
     - {fileID: 11400000, guid: a80fb85297b3ef8458e141cc49d4b6d4, type: 2}
     - {fileID: 11400000, guid: 3aa7543e6b167c049a2b6ae3949f2ce5, type: 2}
-    - {fileID: 11400000, guid: 782655e3431b10745ba9673ad89bb680, type: 2}
-    - {fileID: 11400000, guid: 782655e3431b10745ba9673ad89bb680, type: 2}

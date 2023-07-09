@@ -10,12 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 20fad8a755859a54c9f3a8a79763df9c, type: 3}
-  m_Name: Ponder Corn
+  m_Name: Fall Over
   m_EditorClassIdentifier: 
-  prependDescription: 
+  prependDescription: You fall over, potentially hurting someone standing nearby.
   portrait: {fileID: 0}
-  manaCost: 0
-  cardEffects: []
+  manaCost: 1
+  cardEffects:
+  - name: Deal 2 damage.
+    damage: 2
+    healing: 0
+    searchCard: {fileID: 0}
+    shuffle: 0
+    statusEffects: []
   conditionalEffects: []
-  appendDescription: Other than contemplating kernels, this card has no effect.
+  appendDescription: 
   color: {r: 0.24313726, g: 0.23137255, b: 0.27450982, a: 1}
