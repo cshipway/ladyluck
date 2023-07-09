@@ -10,14 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 20fad8a755859a54c9f3a8a79763df9c, type: 3}
-  m_Name: Preparation
+  m_Name: _Reconaissance
   m_EditorClassIdentifier: 
+  prependDescription: 
   portrait: {fileID: 0}
-  manaCost: 2
+  manaCost: 1
   cardEffects: []
   conditionalEffects: []
-  appendDescription: '_Draw 2 cards.
+  appendDescription: '_Search your deck for any card.
 
-    _Shuffle any two cards from your hand into
-    your deck.'
-  color: {r: 0.24313726, g: 0.23137255, b: 0.27450982, a: 1}
+    _Shuffle your deck.
+
+    _End
+    your turn.'
+  color: {r: 0.30588236, g: 0.4627451, b: 0.24637106, a: 1}

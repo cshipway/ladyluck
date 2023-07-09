@@ -5,7 +5,8 @@ public class Condition
 
     public enum ConditionBasis
     {
-        Round
+        Round,
+        Health
     }
     public enum ComparisonType
     {
@@ -41,6 +42,24 @@ public class Condition
                 }
                 toRet += $"round {value}";
                 break;
+
+            case ConditionBasis.Health:
+                switch(comparisonType)
+                {
+                    case ComparisonType.Is:
+                        toRet += "your health is";
+                        break;
+
+                    case ComparisonType.IsGreaterThan:
+                        toRet += "your health is more than ";
+                        break;
+
+                    case ComparisonType.IsLessThan:
+                        toRet += "your health is less than ";
+                        break;
+                }
+                toRet += $"{value}";
+                break;
         }
 
         toRet += ": ";
@@ -48,7 +67,7 @@ public class Condition
         return toRet;
     }
 
-    public bool Evaluate(int round)
+    public bool Evaluate(int round, int health)
     {
         switch (conditionBasis)
         {
@@ -63,6 +82,20 @@ public class Condition
 
                     case ComparisonType.IsLessThan:
                         return round < value;
+                }
+                return false;
+
+            case ConditionBasis.Health:
+                switch (comparisonType)
+                {
+                    case ComparisonType.Is:
+                        return health == value;
+
+                    case ComparisonType.IsGreaterThan:
+                        return health > value;
+
+                    case ComparisonType.IsLessThan:
+                        return health < value;
                 }
                 return false;
 

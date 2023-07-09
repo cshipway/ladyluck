@@ -8,6 +8,7 @@ public class StatusEffectDefinition
 
     public int strength;
     public int armor;
+    public int strengthMultiplier = 1;
 
     public override string ToString()
     {
@@ -22,6 +23,11 @@ public class StatusEffectDefinition
         if(armor > 0)
         {
             toRet += AddStatToString(armor, "armor", count);
+            count++;
+        }
+        if(strengthMultiplier != 1)
+        {
+            toRet += AddMultiplierToString(strengthMultiplier, "strength", count);
         }
         toRet += $" for {(duration == -1 ? "the rest of the battle" : $"{duration} turn{(duration > 1 ? "s" : "")}")}";
 
@@ -34,6 +40,15 @@ public class StatusEffectDefinition
         if (count > 0)
             toRet += ", ";
         toRet += $"{amount} {stat}";
+        return toRet;
+    }
+
+    private string AddMultiplierToString(int amount, string stat, int count)
+    {
+        string toRet = "";
+        if (count > 0)
+            toRet += ", ";
+        toRet += $"x{amount} {stat}";
         return toRet;
     }
 }

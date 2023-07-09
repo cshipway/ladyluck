@@ -3712,8 +3712,7 @@ MonoBehaviour:
     deck:
       cards: []
     hand: []
-  heroStartingDeck: {fileID: 11400000, guid: 84f612329f946344c8acadef8717e6b9, type: 2}
-  enemyStartingDeck: {fileID: 11400000, guid: 52523c2a6e3d55544a0156a2487740be, type: 2}
+  scenario: {fileID: 11400000, guid: 778b494023e65f24dbb878fcb11355b1, type: 2}
 --- !u!1 &1977320820
 GameObject:
   m_ObjectHideFlags: 0

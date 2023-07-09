@@ -29,8 +29,7 @@ public class BattlefieldManager : MonoBehaviour
     [SerializeField] public Champion hero;
     [SerializeField] public Champion enemy;
 
-    [SerializeField] private DeckDefinition heroStartingDeck;
-    [SerializeField] private DeckDefinition enemyStartingDeck;
+    [SerializeField] private ScenarioDefinition scenario;
 
     public static event Action OnMatchStart;
 
@@ -41,11 +40,11 @@ public class BattlefieldManager : MonoBehaviour
 
     private void Start()
     {
-        hero = new Champion("Hero", heroStartingDeck.startingHp, new Deck() { cards = new List<CardDefinition>(heroStartingDeck.deck.cards) });
-        enemy = new Champion(enemyStartingDeck.name, enemyStartingDeck.startingHp, new Deck() { cards = new List<CardDefinition>(enemyStartingDeck.deck.cards) });
+        hero = new Champion("Hero", scenario.heroDeckDefinition.startingHp, new Deck() { cards = new List<CardDefinition>(scenario.heroDeckDefinition.deck.cards) });
+        enemy = new Champion(scenario.enemyDeckDefinition.name, scenario.enemyDeckDefinition.startingHp, new Deck() { cards = new List<CardDefinition>(scenario.enemyDeckDefinition.deck.cards) });
 
-        if(enemyStartingDeck.portrait != null)
-            hudEnemyPortrait.sprite = enemyStartingDeck.portrait;
+        if(scenario.enemyDeckDefinition.portrait != null)
+            hudEnemyPortrait.sprite = scenario.enemyDeckDefinition.portrait;
 
         DeckBuilderManager.Instance.SetHeroDeck(hero, hero.deck);
         DeckBuilderManager.Instance.SetEnemyDeck(enemy, enemy.deck);

@@ -19,6 +19,17 @@ public class Champion
     public int Strength => statusEffects.Select(i => i.definition).Sum(d => d.strength);
     public int Armor => statusEffects.Select(i => i.definition).Sum(d => d.armor);
 
+    public int StrengthMultiplier
+    {
+        get
+        {
+            int b = 1;
+            foreach (StatusEffectDefinition definition in statusEffects.Select(i => i.definition))
+                b *= definition.strengthMultiplier;
+            return b;
+        }
+    }
+
     public Champion(string name, int hp, Deck deck)
     {
         this.name = name;
@@ -146,7 +157,7 @@ public class Champion
 
         foreach(ConditionalEffect conditionalEffect in card.conditionalEffects)
         {
-            if(conditionalEffect.condition.Evaluate(round))
+            if(conditionalEffect.condition.Evaluate(round, hp))
                 yield return battlefield.StartCoroutine(ResolveEffect(battlefield, conditionalEffect.effect));
         }
 
@@ -160,7 +171,7 @@ public class Champion
     {
         if (cardEffect.damage > 0)
         {
-            int d = cardEffect.damage + Strength - foe.Armor;
+            int d = cardEffect.damage + (Strength * StrengthMultiplier) - foe.Armor;
             if (d < 0)
                 d = 0;
             foe.hp -= d;

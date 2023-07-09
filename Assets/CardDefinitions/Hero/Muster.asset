@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20fad8a755859a54c9f3a8a79763df9c, type: 3}
   m_Name: Muster
   m_EditorClassIdentifier: 
+  prependDescription: 
   portrait: {fileID: 0}
   manaCost: 1
   cardEffects:
@@ -25,6 +26,7 @@ MonoBehaviour:
       duration: -1
       strength: 1
       armor: 0
+      strengthMultiplier: 1
   conditionalEffects: []
   appendDescription: 
   color: {r: 0.24313726, g: 0.23137255, b: 0.27450982, a: 1}

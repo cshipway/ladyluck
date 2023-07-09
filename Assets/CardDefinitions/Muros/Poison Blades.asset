@@ -10,22 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 20fad8a755859a54c9f3a8a79763df9c, type: 3}
-  m_Name: Bulk Up
+  m_Name: Poison Blades
   m_EditorClassIdentifier: 
   prependDescription: 
   portrait: {fileID: 0}
   manaCost: 2
   cardEffects:
-  - name: Gain 1 strength for the rest of the battle.
+  - name: Gain 3 strength for the rest of the battle.
     damage: 0
     healing: 0
     searchCard: {fileID: 0}
     shuffle: 0
     statusEffects:
-    - name: 1 strength for the rest of the battle
+    - name: 3 strength for the rest of the battle
       duration: -1
-      strength: 1
+      strength: 3
       armor: 0
+      strengthMultiplier: 1
   conditionalEffects: []
   appendDescription: 
-  color: {r: 0.24313726, g: 0.23137255, b: 0.27450982, a: 1}
+  color: {r: 0.30588236, g: 0.4627451, b: 0.24637106, a: 1}

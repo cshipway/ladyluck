@@ -10,19 +10,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 20fad8a755859a54c9f3a8a79763df9c, type: 3}
-  m_Name: Beatdown
+  m_Name: Swipes
   m_EditorClassIdentifier: 
   prependDescription: 
   portrait: {fileID: 0}
-  manaCost: 2
+  manaCost: 1
   cardEffects:
+  - name: Deal 3 damage.
+    damage: 3
+    healing: 0
+    searchCard: {fileID: 0}
+    shuffle: 0
+    statusEffects: []
   - name: Deal 2 damage.
     damage: 2
     healing: 0
     searchCard: {fileID: 0}
     shuffle: 0
     statusEffects: []
+  - name: Deal 1 damage.
+    damage: 1
+    healing: 0
+    searchCard: {fileID: 0}
+    shuffle: 0
+    statusEffects: []
   conditionalEffects: []
-  appendDescription: _If you already played another card this turn, deal 5 damage
-    instead.
-  color: {r: 0.24313726, g: 0.23137255, b: 0.27450982, a: 1}
+  appendDescription: 
+  color: {r: 0.30588236, g: 0.4627451, b: 0.24637106, a: 1}

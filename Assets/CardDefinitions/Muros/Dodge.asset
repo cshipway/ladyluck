@@ -10,11 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 20fad8a755859a54c9f3a8a79763df9c, type: 3}
-  m_Name: Slow-Acting Poison
+  m_Name: Dodge
   m_EditorClassIdentifier: 
+  prependDescription: 
   portrait: {fileID: 0}
-  manaCost: 1
-  cardEffects: []
+  manaCost: 0
+  cardEffects:
+  - name: Gain 10 armor for 1 turn.
+    damage: 0
+    healing: 0
+    searchCard: {fileID: 0}
+    shuffle: 0
+    statusEffects:
+    - name: 10 armor for 1 turn
+      duration: 1
+      strength: 0
+      armor: 10
+      strengthMultiplier: 1
   conditionalEffects: []
-  appendDescription: _at the end of your opponent's next turn, deal 2 true damage.
-  color: {r: 0.24313726, g: 0.23137255, b: 0.27450982, a: 1}
+  appendDescription: 
+  color: {r: 0.30588236, g: 0.4627451, b: 0.24637106, a: 1}

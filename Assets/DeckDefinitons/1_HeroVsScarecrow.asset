@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4540943819504684fa9f5c6f351670a1, type: 3}
-  m_Name: Agility
+  m_Name: 1_HeroVsScarecrow
   m_EditorClassIdentifier: 
   portrait: {fileID: 0}
   startingHp: 10
   deck:
     cards:
-    - {fileID: 11400000, guid: 844340fe6e182f74fa410fba7514fcc6, type: 2}
-    - {fileID: 11400000, guid: 23ae1090dcb5786428b93101d20b1b1c, type: 2}
-    - {fileID: 11400000, guid: a87145481e091764198c17fe8814971a, type: 2}
-    - {fileID: 11400000, guid: d1bc3916b7e26dc43b67044480d6aa6b, type: 2}
+    - {fileID: 11400000, guid: a84c1d0c6068f484b91f4ddb408ba88e, type: 2}
+    - {fileID: 11400000, guid: e50414e7c90747d49a11654d0192db59, type: 2}
+    - {fileID: 11400000, guid: c8df6c33fdb85d14991da1d620050512, type: 2}
+    - {fileID: 11400000, guid: 0c6ec1edcc62f2848a2a150a7cd2129d, type: 2}
+    - {fileID: 11400000, guid: a4694c117ca0e604da87d15e962fc997, type: 2}

@@ -10,14 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4540943819504684fa9f5c6f351670a1, type: 3}
-  m_Name: StartingDeck
+  m_Name: 3_HeroVsMuros
   m_EditorClassIdentifier: 
   portrait: {fileID: 0}
-  startingHp: 10
+  startingHp: 20
   deck:
     cards:
+    - {fileID: 11400000, guid: a84c1d0c6068f484b91f4ddb408ba88e, type: 2}
+    - {fileID: 11400000, guid: a84c1d0c6068f484b91f4ddb408ba88e, type: 2}
     - {fileID: 11400000, guid: a84c1d0c6068f484b91f4ddb408ba88e, type: 2}
     - {fileID: 11400000, guid: e50414e7c90747d49a11654d0192db59, type: 2}
     - {fileID: 11400000, guid: c8df6c33fdb85d14991da1d620050512, type: 2}
     - {fileID: 11400000, guid: 0c6ec1edcc62f2848a2a150a7cd2129d, type: 2}
     - {fileID: 11400000, guid: a4694c117ca0e604da87d15e962fc997, type: 2}
+    - {fileID: 11400000, guid: e0a66dde5fc4e3248a4ddf0f5a43b435, type: 2}
+    - {fileID: 11400000, guid: 14aac7ee8530609449bc963f0e56b9b0, type: 2}
+    - {fileID: 11400000, guid: 696829ced43b82f428c2b0f6ce81c356, type: 2}
+    - {fileID: 11400000, guid: 3d117adb9f5ab81489283886f5915065, type: 2}

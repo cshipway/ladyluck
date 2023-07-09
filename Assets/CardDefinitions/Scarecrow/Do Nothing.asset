@@ -18,4 +18,4 @@ MonoBehaviour:
   cardEffects: []
   conditionalEffects: []
   appendDescription: This card has no effect.
-  color: {r: 0.24313726, g: 0.23137255, b: 0.27450982, a: 1}
+  color: {r: 0.5283019, g: 0.44600347, b: 0.251691, a: 1}
