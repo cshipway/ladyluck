@@ -64,7 +64,8 @@ public class Champion
             }
         }
 
-        yield return battlefield.StartCoroutine(battlefield.ShowReasonableText($"{name} ends their turn!"));
+        if(foe.hp > 0)
+            yield return battlefield.StartCoroutine(battlefield.ShowReasonableText($"{name} ends their turn!"));
         Debug.Log($"{name} ends their turn!");
     }
 

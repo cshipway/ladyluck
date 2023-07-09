@@ -1834,8 +1834,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12c9fc88d6970a5459e527dc6ed6b912, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heroDeckBuilder: {fileID: 2132132868}
-  enemyDeckBuilder: {fileID: 498851610}
 --- !u!4 &1178902672
 Transform:
   m_ObjectHideFlags: 0
@@ -1887,8 +1885,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 239.49, y: -16}
-  m_SizeDelta: {x: 478.98, y: 32}
+  m_AnchoredPosition: {x: 250, y: -23.58}
+  m_SizeDelta: {x: 500, y: 47.16}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1191261967
 MonoBehaviour:
@@ -1903,11 +1901,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
-  m_MinWidth: -1
+  m_MinWidth: 500
   m_MinHeight: -1
-  m_PreferredWidth: -1
+  m_PreferredWidth: 500
   m_PreferredHeight: -1
-  m_FlexibleWidth: 1
+  m_FlexibleWidth: 0
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
 --- !u!114 &1191261968
@@ -1930,7 +1928,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Here is some more reasonable text...
+  m_text: Here is some reasonable text.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a34d01f95df26fb47b33434ec80db430, type: 2}
   m_sharedMaterial: {fileID: -8849274843766594452, guid: a34d01f95df26fb47b33434ec80db430, type: 2}
@@ -1993,7 +1991,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 10, y: 10, z: 10, w: 10}
+  m_margin: {x: 10, y: 5, z: 10, w: 5}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -2465,7 +2463,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 478.98, y: 32}
+  m_SizeDelta: {x: 500, y: 47.16}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1418031322
 CanvasRenderer:
@@ -2488,7 +2486,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_HorizontalFit: 2
-  m_VerticalFit: 0
+  m_VerticalFit: 2
 --- !u!114 &1418031324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3697,6 +3695,7 @@ MonoBehaviour:
   battlefieldHud: {fileID: 344054187}
   hudHeroHpText: {fileID: 1152431859}
   hudHeroMpText: {fileID: 1588492210}
+  hudEnemyPortrait: {fileID: 1954869363}
   hudEnemyHpText: {fileID: 1518621943}
   hudEnemyMpText: {fileID: 894177832}
   hero:
@@ -3714,7 +3713,7 @@ MonoBehaviour:
       cards: []
     hand: []
   heroStartingDeck: {fileID: 11400000, guid: 84f612329f946344c8acadef8717e6b9, type: 2}
-  enemyStartingDeck: {fileID: 11400000, guid: 0a9ef77a732ecb94da17e60366a57e51, type: 2}
+  enemyStartingDeck: {fileID: 11400000, guid: 52523c2a6e3d55544a0156a2487740be, type: 2}
 --- !u!1 &1977320820
 GameObject:
   m_ObjectHideFlags: 0

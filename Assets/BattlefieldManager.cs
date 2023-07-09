@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BattlefieldManager : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class BattlefieldManager : MonoBehaviour
     [SerializeField] private GameObject battlefieldHud;
     [SerializeField] private TextMeshProUGUI hudHeroHpText;
     [SerializeField] private TextMeshProUGUI hudHeroMpText;
+    [SerializeField] private Image hudEnemyPortrait;
     [SerializeField] private TextMeshProUGUI hudEnemyHpText;
     [SerializeField] private TextMeshProUGUI hudEnemyMpText;
 
@@ -39,8 +41,11 @@ public class BattlefieldManager : MonoBehaviour
 
     private void Start()
     {
-        hero = new Champion("Hero", 10, new Deck() { cards = new List<CardDefinition>(heroStartingDeck.deck.cards) });
-        enemy = new Champion("Enemy", 10, new Deck() { cards = new List<CardDefinition>(enemyStartingDeck.deck.cards) });
+        hero = new Champion("Hero", heroStartingDeck.startingHp, new Deck() { cards = new List<CardDefinition>(heroStartingDeck.deck.cards) });
+        enemy = new Champion(enemyStartingDeck.name, enemyStartingDeck.startingHp, new Deck() { cards = new List<CardDefinition>(enemyStartingDeck.deck.cards) });
+
+        if(enemyStartingDeck.portrait != null)
+            hudEnemyPortrait.sprite = enemyStartingDeck.portrait;
 
         DeckBuilderManager.Instance.SetHeroDeck(hero, hero.deck);
         DeckBuilderManager.Instance.SetEnemyDeck(enemy, enemy.deck);
@@ -108,7 +113,7 @@ public class BattlefieldManager : MonoBehaviour
 
         yield return null;
 
-        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Return) && !DeckBuilderManager.Instance.deckBuilding);
+        yield return new WaitUntil(() => (Input.GetKeyDown(KeyCode.Return) || Input.GetMouseButtonDown(0)) && !DeckBuilderManager.Instance.deckBuilding);
 
         bigText.transform.parent.gameObject.SetActive(false);
     }
@@ -129,7 +134,7 @@ public class BattlefieldManager : MonoBehaviour
 
         yield return null;
 
-        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Return) && !DeckBuilderManager.Instance.deckBuilding);
+        yield return new WaitUntil(() => (Input.GetKeyDown(KeyCode.Return) || Input.GetMouseButtonDown(0)) && !DeckBuilderManager.Instance.deckBuilding);
 
         reasonableText.transform.parent.gameObject.SetActive(false);
     }

@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Card Definition", menuName = "Card Definition")]
 public class CardDefinition : ScriptableObject
 {
+    [TextArea] public string prependDescription;
     public Sprite portrait;
     public int manaCost = 1;
     public List<CardEffect> cardEffects;
@@ -40,7 +41,13 @@ public class CardDefinition : ScriptableObject
         string description = "";
         int count = 0;
 
-        foreach(CardEffect cardEffect in cardEffects)
+        if (!string.IsNullOrEmpty(prependDescription))
+        {
+            description += $"{prependDescription}";
+            count++;
+        }
+
+        foreach (CardEffect cardEffect in cardEffects)
         {
             if (count > 0)
                 description += "\n";
